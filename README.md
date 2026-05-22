@@ -28,7 +28,7 @@ yarn install
 node api.js
 ```
 
-L’API tourne sur `http://localhost:8092` (port défini en dur dans `server/api.js` avec `const PORT = 8092`). Si vous changez ce port, mettez aussi à jour `BASE_URL` dans `client/v2/portfolio.js`.
+L’API tourne sur `http://localhost:8092` (port défini en dur dans `server/api.js` avec `const PORT = 8092`). Il n’y a pas de variable d’environnement pour ce port pour l’instant, donc un changement se fait directement dans le fichier (et il faut aussi mettre à jour `BASE_URL` dans `client/v2/portfolio.js`).
 
 ### 2. Ouvrir l’interface web
 
@@ -42,7 +42,7 @@ python3 -m http.server 8000
 Puis ouvrir `http://localhost:8000` dans le navigateur.
 
 > La logique est dans `client/v2/portfolio.js` (constante `BASE_URL`) :
-> - en prod Vercel, `BASE_URL` pointe vers `https://server-ten-coral-54.vercel.app` (modifier cette constante si le déploiement change)
+> - en prod Vercel, `BASE_URL` pointe vers `https://server-ten-coral-54.vercel.app` (config codée en dur : modifier cette constante si le déploiement change)
 > - en local, `BASE_URL` vaut `http://localhost:8092` (à ajuster si le port serveur change)
 
 ## 🧪 (Optionnel) Mettre à jour les données
