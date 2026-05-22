@@ -20,7 +20,7 @@ L’idée est simple : agréger les promos, comparer les prix et visualiser rapi
 
 ## 🚀 Démarrage rapide (local)
 
-### 1) Lancer l’API
+### 1. Lancer l’API
 
 ```bash
 cd server
@@ -30,7 +30,7 @@ node api.js
 
 L’API tourne sur `http://localhost:8092`.
 
-### 2) Ouvrir l’interface web
+### 2. Ouvrir l’interface web
 
 Dans un autre terminal :
 
