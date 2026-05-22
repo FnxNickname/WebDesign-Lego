@@ -6,15 +6,15 @@ L’idée est simple : agréger les promos, comparer les prix et visualiser rapi
 
 ## ✨ Ce que fait l’application
 
-- Récupère des deals Lego depuis des communautés comme Dealabs et Avenue de la Brique.
-- Centralise ces deals dans une API locale.
-- Affiche une interface web pour trier, filtrer et comparer les offres.
-- Met en avant les bonnes réductions, les deals chauds et les offres avec ventes Vinted disponibles.
-- Permet de mettre des deals en favoris.
+- récupère des deals Lego depuis des communautés comme Dealabs et Avenue de la Brique.
+- centralise ces deals dans une API locale.
+- affiche une interface web pour trier, filtrer et comparer les offres.
+- met en avant les bonnes réductions, les deals chauds et les offres avec ventes Vinted disponibles.
+- permet de mettre des deals en favoris.
 
 ## 🧭 Organisation du dépôt
 
-- `client/v1` : première version pédagogique (manipulation de données dans la console).
+- `client/v1` : première version d'apprentissage (manipulation de données dans la console).
 - `client/v2` : interface web complète (UI + filtres + stats).
 - `server` : API Express + scrapers + données JSON.
 
