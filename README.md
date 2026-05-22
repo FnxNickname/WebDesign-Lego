@@ -1,6 +1,6 @@
 # 🧱 Lego Deals Tracker
 
-Ce projet, c’est ma manière de transformer une passion (les sets Lego) en un vrai terrain d’analyse : je veux repérer les bonnes affaires, comprendre le marché et décider si un deal vaut vraiment le coup.
+Ce projet est un vrai terrain d’analyse : je veux repérer les bonnes affaires, comprendre le marché et décider si un deal vaut vraiment le coup.
 
 L’idée est simple : agréger les promos, comparer les prix et visualiser rapidement ce qui mérite d’être acheté — que ce soit pour collectionner ou investir.
 
@@ -73,7 +73,3 @@ Les fichiers JSON sont ensuite écrits dans `server/websites/`.
 - `GET /sales/search`
   - `legoSetId` : id du set
   - `limit` : nombre de ventes
-
-## 📝 Licence
-
-[Uncopyrighted](http://zenhabits.net/uncopyright/)
