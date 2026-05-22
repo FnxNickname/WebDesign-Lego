@@ -1,61 +1,75 @@
-# 🧱 Lego
+# 🧱 Lego Deals Tracker
 
-> First bricks for profitability
+Ce projet est un vrai terrain d’analyse : je veux repérer les bonnes affaires, comprendre le marché et décider si un deal vaut vraiment le coup.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+L’idée est simple : agréger les promos, comparer les prix et visualiser rapidement ce qui mérite d’être acheté — que ce soit pour collectionner ou investir.
 
-- [📱 Context](#-context)
-- [🤔 The bullet-list Problems](#-the-bullet-list-problems)
-- [🎯 Objective](#-objective)
-- [🛣 How to solve it?](#%F0%9F%9B%A3-how-to-solve-it)
-- [👩🏽‍💻 Step by step with Workshops](#%E2%80%8D-step-by-step-with-workshops)
-- [📝 Licence](#-licence)
+## ✨ Ce que fait l’application
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+- Récupère des deals Lego depuis des communautés comme Dealabs et Avenue de la Brique.
+- Centralise ces deals dans une API locale.
+- Affiche une interface web pour trier, filtrer et comparer les offres.
+- Met en avant les bonnes réductions, les deals chauds et les offres avec ventes Vinted disponibles.
+- Permet de mettre des deals en favoris.
 
-## 📱 Context
+## 🧭 Organisation du dépôt
 
-LEGO investments is a good source of profit. 
+- `client/v1` : première version d'apprentissage (manipulation de données dans la console).
+- `client/v2` : interface web complète (UI + filtres + stats).
+- `server` : API Express + scrapers + données JSON (`websites/` et `sources/`).
 
-## 🤔 The bullet-list Problems
+## 🚀 Démarrage rapide (local)
 
-Collecting profit on your LEGO investments isn’t as easy as it sounds.
+### 1. Lancer l’API
 
-* How to identify profitable lego sets?
-* How to buy lego sets under the retail price to maximise the profit?
-* How to sell profitable lego sets above the retail price?
+```bash
+cd server
+yarn install
+node api.js
+```
 
-## 🎯 Objective
+L’API tourne sur `http://localhost:8092` (port défini en dur dans `server/api.js` avec `const PORT = 8092`). Il n’y a pas de variable d’environnement pour ce port pour l’instant, donc un changement se fait directement dans le fichier (et il faut aussi mettre à jour `BASE_URL` dans `client/v2/portfolio.js`).
 
-**Build an end-to-end web application to determine if a lego set deal is really a good deal.**
+### 2. Ouvrir l’interface web
 
-## 🛣 How to solve it?
+Dans un autre terminal :
 
-1. 🎨 **Make a frictionless experience**: How to easily identify profitable deals in [very flew clicks](https://github.com/92bondstreet/inception/blob/main/themes/1.md#about-ux-best-practices)
-1. 🧱 **Manipulate deals and sold items**: How to [manipulate](https://github.com/92bondstreet/inception/blob/main/themes/2.md#about-javascript) the products in the [browser](https://github.com/92bondstreet/inception/blob/main/themes/2.md#about-htmlcss)
-2. 🧹 **Scrape deals and sales**: How to [fetch](https://github.com/92bondstreet/inception/blob/main/themes/3.md#about-nodejs) Products from different website sources
-3. 📱 **Render deals and sales in the browser**: How to [interact](https://github.com/92bondstreet/inception/blob/main/themes/1.md#about-prototyping) with the Products in the browser
-4. 💽 **Save deals and sales in database**: How to avoid to scrape again and again the same data
-5. ⤵️ **Request deals and sales with an api**: How to [give access](https://github.com/92bondstreet/inception/blob/main/themes/3.md#about-restful-api) to your data
-6. 🐛 **Test your code**: How to [ensure quality](https://github.com/92bondstreet/inception/blob/main/themes/3.md#about-readme-driven-comment-driven-and-test-driven-development) and confidence
-7. 🚀 **Deploy in production**: How to [give access](https://github.com/92bondstreet/inception/blob/main/themes/3.md#about-serverless) to anyone
-9. ...
+```bash
+cd client/v2
+python3 -m http.server 8000
+```
 
-## 👩🏽‍💻 Step by step with Workshops
+Puis ouvrir `http://localhost:8000` dans le navigateur.
 
-With [inception](https://github.com/92bondstreet/inception?tab=readme-ov-file#%EF%B8%8F-the-3-themes) themes, we'll follow next workshops to solve our problem:
+> La logique est dans `client/v2/portfolio.js` (constante `BASE_URL`) :
+> - en prod Vercel, `BASE_URL` pointe vers `https://server-ten-coral-54.vercel.app` (config codée en dur : modifier cette constante si le déploiement change)
+> - en local, `BASE_URL` vaut `http://localhost:8092` (à ajuster si le port serveur change)
 
-| Step | Workshops | Planned Date
-| --- | --- | ---
-| 0 | [Craft an effective prototype](./workshops/0-craft-your-conviction.md) | Jan 2025
-| 1 | [Manipulate data with JavaScript in the browser](./workshops/1-manipulate-javascript.md) | Feb 2025
-| 2 | [Interact data with JavaScript, HTML and CSS in the browser again](./workshops/2-interact-js-css.md) | Feb 2025
-| 3 | [Scrape data with Node.js](./workshops/3-scrape-node.md)| Mar 2025
-| 4 | [Build an api with Express to request data](./workshops/4-api-express.md) | Mar 2025
-| 5 | [Deploy in production with Vercel](./workshops/5-deploy.md) | Mar 2025
+## 🧪 (Optionnel) Mettre à jour les données
 
-## 📝 Licence
+Le serveur lit les données depuis :
 
-[Uncopyrighted](http://zenhabits.net/uncopyright/)
+- `server/websites/*.json` (deals)
+- `server/sources/vinted.json` (ventes Vinted)
+
+Pour relancer les scrapers (Avenue de la Brique + Dealabs) et réécrire les JSON dans `server/websites/` :
+
+```bash
+cd server
+yarn install
+node sandbox.js
+```
+
+Les fichiers JSON sont ensuite écrits dans `server/websites/`.
+
+## 🔌 API (aperçu)
+
+- `GET /deals/search`
+  - `limit` : nombre de deals
+  - `price` : prix max
+  - `date` : date minimale (ISO)
+  - `filterBy` : `best-discount` | `most-commented` | `hot-deals`
+- `GET /deals/:id`
+- `GET /sales/search`
+  - `legoSetId` : id du set
+  - `limit` : nombre de ventes
