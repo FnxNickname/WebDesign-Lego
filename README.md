@@ -41,7 +41,7 @@ python3 -m http.server 8000
 
 Puis ouvrir `http://localhost:8000` dans le navigateur.
 
-> L’interface utilise `http://localhost:8092` en local, et bascule vers l’API déployée si l’hôte se termine par `vercel.app`.
+> La logique est dans `client/v2/portfolio.js` (constante `BASE_URL`) : si `window.location.hostname` se termine par `vercel.app`, l’app utilise `https://server-ten-coral-54.vercel.app`, sinon `http://localhost:8092`.
 
 ## 🧪 (Optionnel) Mettre à jour les données
 
@@ -50,7 +50,7 @@ Le serveur lit les données depuis :
 - `server/websites/*.json` (deals)
 - `server/sources/vinted.json` (ventes Vinted)
 
-Pour relancer les scrapers :
+Pour relancer les scrapers (Avenue de la Brique + Dealabs) et réécrire les JSON dans `server/websites/` :
 
 ```bash
 cd server
