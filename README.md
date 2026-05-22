@@ -28,7 +28,7 @@ yarn install
 node api.js
 ```
 
-L’API tourne sur `http://localhost:8092`.
+L’API tourne sur `http://localhost:8092` (port défini dans `server/api.js`, variable `PORT`).
 
 ### 2. Ouvrir l’interface web
 
@@ -41,7 +41,7 @@ python3 -m http.server 8000
 
 Puis ouvrir `http://localhost:8000` dans le navigateur.
 
-> L’interface appelle automatiquement l’API locale si elle n’est pas déployée.
+> L’interface utilise `http://localhost:8092` en local, et bascule vers l’API déployée si l’hôte se termine par `vercel.app`.
 
 ## 🧪 (Optionnel) Mettre à jour les données
 
